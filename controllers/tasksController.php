@@ -20,20 +20,31 @@ class tasksController extends http\controller
 
     //to call the show function the url is index.php?page=task&action=list_task
 
-    public static function all()
-    {
-        $records = todos::findAll();
-        /*session_start();
+    public static function showTasks()
+    {      session_start();
+    //print_r($_SESSION['userID']);
            if(key_exists('userID',$_SESSION)) {
                $userID = $_SESSION['userID'];
            } else {
 
                echo 'you must be logged in to view tasks';
            }
-        $userID = $_SESSION['userID'];
+           $tasks = todos::findTasksByID($userID);
+           if ($tasks==FALSE){
+               echo "You have not created any tasks";
 
-        $records = todos::findTasksbyID($userID);
-        */
+           }
+           else
+           {
+               self::getTemplate('all_tasks', $tasks);
+           }
+
+
+    }
+
+    public static function all()
+    {
+        $records = todos::findAll();
         self::getTemplate('all_tasks', $records);
 
     }
