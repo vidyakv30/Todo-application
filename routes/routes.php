@@ -41,6 +41,9 @@ class routes
         $routes[] = $route;
         $route = self::create('POST','edit','tasks','tasksController','edit');
         $routes[] = $route;
+        $route = self::create('POST','save','tasks','tasksController','store');
+        $routes[] = $route;
+
         return $routes;
 
 //        //bellow adds routes to your program, routes match the URL and request method with the controller and method.

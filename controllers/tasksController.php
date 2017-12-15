@@ -71,23 +71,50 @@ class tasksController extends http\controller
     public static function store()
     {
 
-
+        session_start();
         $record = todos::findOne($_REQUEST['id']);
-        $record->body = $_REQUEST['body'];
-        $record->save();
-        print_r($_POST);
+//        $record->body = $_REQUEST['body'];
+//        print_r($_SESSION['userID']);
+//        print_r($_REQUEST['id']);
+       print_r($record);
+        $record->owneremail = $_POST['owneremail'];
+        $record->ownerid = $_POST['ownerid'];
+        $record->createddate = $_POST['createddate'];
+        $record->duedate = $_POST['duedate'];
+        $record->message = $_POST['message'];
+        $record->isdone = $_POST['isdone'];
+        echo 'to update';
+        print_r($record);
 
+        $record->save();
+        //print_r($_POST);
+       header("Location: index.php?page=tasks&action=all");
     }
 
     public static function save() {
-        session_start();
-        $task = new todo();
+ session_start();
+//       // $task = new todo();
+
+        $task = todos::findOne($_REQUEST['id']);
 
         $task->body = $_POST['body'];
         $task->ownerid = $_SESSION['userID'];
         $task->save();
 
+//        $user = todos::findOne($_REQUEST['id']);
+
+//        $user->owneremail = $_POST['owneremail'];
+//        $user->ownerid = $_POST['ownerid'];
+//        $user->createddate = $_POST['createddate'];
+//        $user->duedate = $_POST['duedate'];
+//        $user->message = $_POST['message'];
+//        $user->isdone = $_POST['isdone'];
+//        $user->save();
+        header("Location: index.php?page=tasks&action=all");
+
     }
+
+
 
     //this is the delete function.  You actually return the edit form and then there should be 2 forms on that.
     //One form is the todo and the other is just for the delete button
