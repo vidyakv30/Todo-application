@@ -22,7 +22,6 @@
 
 print utility\htmlTable::genarateTableFromMultiArray($data);
 
-
 ?>
 
 

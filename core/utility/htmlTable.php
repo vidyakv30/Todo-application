@@ -19,16 +19,21 @@ class htmlTable
         foreach ($fieldHeadings as $heading) {
             $tableGen .= '<th>' . $heading . '</th>';
         }
+        $tableGen .= '<th></th>';
         $tableGen .= '</tr>';
         foreach ($array as $record) {
             $tableGen .= '<tr>';
             foreach ($record as $key => $value) {
                 if ($key == 'id') {
-                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $value . '">View</a></td>';
-                } else {
-                    $tableGen .= '<td>' . $value . '</td>';
+//                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $value . '">View</a></td>';
+                    $id_new = $value;
                 }
+// else {
+//                    $tableGen .= '<td>' . $value . '</td>';
+//                }
+                $tableGen .= '<td>' . $value . '</td>';
             }
+            $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $id_new . '">View</a></td>';
             $tableGen .= '</tr>';
         }
 
