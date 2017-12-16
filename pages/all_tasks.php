@@ -27,6 +27,14 @@ print utility\htmlTable::genarateTableFromMultiArray($data);
 <button type="submit" id="AddTaskForm" value="add task" >Add Task</button>
 </form>
 
+
+<h3><a href="index.php?page=accounts&action=edit"> Edit Profile </a></h3>
+<!--<form action="index.php?page=accounts&action=profile" method="POST" id="EditProfile">-->
+<!--<button type="submit" id="EditProfile" value="add task" >Edit Profile</button>-->
+<!--</form>-->
+
+
+
 <h2><a href="index.php?page=accounts&action=logout">Log Out</a></h2>
 
 <script src="js/scripts.js"></script>

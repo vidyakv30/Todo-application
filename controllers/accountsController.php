@@ -80,15 +80,16 @@ class accountsController extends http\controller
     }
 
     public static function edit()
-    {
-        $record = accounts::findOne($_REQUEST['id']);
+    {   session_start();
+        $record = accounts::findOne($_SESSION['userID']);
 
         self::getTemplate('edit_account', $record);
 
     }
 //this is used to save the update form data
     public static function save() {
-        $user = accounts::findOne($_REQUEST['id']);
+        session_start();
+        $user = accounts::findOne($_SESSION['userID']);
 
         $user->email = $_POST['email'];
         $user->fname = $_POST['fname'];

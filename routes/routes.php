@@ -50,6 +50,8 @@ class routes
         $route = self::create('GET','logout','accounts','accountsController','logout');
         $routes[] = $route;
 
+
+
         return $routes;
 
 //        //bellow adds routes to your program, routes match the URL and request method with the controller and method.

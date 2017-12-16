@@ -20,17 +20,20 @@
 <?php
 ////this is how you print something  $data contains the record that was selected on the table.
 //
-//print_r($data);
+print_r($data);
 //print_r ($_REQUEST);
-//?>
+print_r($data->message);
+?>
+<br>
+
 <form action="index.php?page=tasks&action=edit&id=<?php echo $data->id; ?> " method="post" id="form1">
-    ID: <input type="text" name="id" value = <?php echo $data->id?> readonly><br>
-    Owner Email: <input type="text" name="owneremail" value = <?php echo $data->owneremail?> readonly><br>
-    Owner ID: <input type="text" name="ownerid" value = <?php echo $data->ownerid?> readonly><br>
-    Cre ated Date: <input type="text" name="createddate" value = <?php echo $data->createddate?> readonly><br>
-    Due Date: <input type="text" name="duedate" value = <?php echo $data->duedate?> readonly><br>
-    Message: <input type="text" name="message" value = <?php echo $data->message?> readonly><br>
-    Is Done: <input type="text" name="isdone" value = <?php echo $data->isdone?> readonly><br>
+    ID: <input type="text" name="id" value = "<?php echo $data->id?>" readonly><br>
+    Owner Email: <input type="text" name="owneremail" value = "<?php echo $data->owneremail?>" readonly><br>
+    Owner ID: <input type="text" name="ownerid" value = "<?php echo $data->ownerid?>" readonly><br>
+    Created Date: <input type="text" name="createddate" value = "<?php echo $data->createddate?>" readonly><br>
+    Due Date: <input type="text" name="duedate" value = "<?php echo $data->duedate?>" readonly><br>
+    Message: <input type="text" name="message" value = "<?php echo $data->message?>" readonly><br>
+    Is Done: <input type="text" name="isdone" value = "<?php echo $data->isdone?>" readonly><br>
     <button type="submit" form="form1" value="edit" >Edit</button>
 <!--    <button type="submit" form="form1" value="delete" >Delete</button>-->
 </form>

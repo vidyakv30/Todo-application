@@ -32,7 +32,7 @@
 
 <form action="index.php?page=accounts&action=login" method="POST">
 
-    <div class="container">
+                            <div class="container">
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="email" required>
 
