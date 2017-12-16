@@ -8,8 +8,8 @@ class htmlTable
     public static function genarateTableFromMultiArray($array)
     {
 
-        $tableGen = '<table border="1"cellpadding="10">';
-        $tableGen .= '<tr>';
+        $tableGen = '<div class="container"><table border="1" class="table table-striped">';
+        $tableGen .= '<tr >';
         //this grabs the first element of the array so we can extract the field headings for the table
         $fieldHeadings = $array[0];
         $fieldHeadings = get_object_vars($fieldHeadings);
@@ -19,7 +19,7 @@ class htmlTable
         foreach ($fieldHeadings as $heading) {
             $tableGen .= '<th>' . $heading . '</th>';
         }
-        $tableGen .= '<th></th>';
+        $tableGen .= '<th ></th>';
         $tableGen .= '</tr>';
         foreach ($array as $record) {
             $tableGen .= '<tr>';
@@ -37,7 +37,7 @@ class htmlTable
             $tableGen .= '</tr>';
         }
 
-        $tableGen .= '</table>';
+        $tableGen .= '</table></div>';
 
         return $tableGen;
     }

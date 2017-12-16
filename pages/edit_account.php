@@ -29,7 +29,6 @@
 </form>
 <h3><a href="index.php?page=accounts&action=changePassword">Change Password</a></h3>
 
-
 <script src="js/scripts.js"></script>
 </body>
 </html>

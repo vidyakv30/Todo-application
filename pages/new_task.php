@@ -23,7 +23,7 @@
     Created Date:<input type="datetime-local"name="createddate"><br>
     Due date:<input type="datetime-local" name="duedate"><br>
     Message:<input type="text" name="message"><br>
-    Is done:<input id="checkBox" type="checkbox" name="isdone"><br>
+    Is done:<input id="checkBox" type="checkbox" name="isdone" value="isdone"><br>
     <input type="submit" value="Create Task">
 </form>
 

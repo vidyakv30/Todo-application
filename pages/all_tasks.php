@@ -35,7 +35,7 @@ print utility\htmlTable::genarateTableFromMultiArray($data);
 
 
 
-<h2><a href="index.php?page=accounts&action=logout">Log Out</a></h2>
+
 
 <script src="js/scripts.js"></script>
 </body>

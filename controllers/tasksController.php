@@ -84,7 +84,12 @@ class tasksController extends http\controller
         $task->createddate = $_POST['createddate'];
         $task->duedate = $_POST['duedate'];
         $task->message = $_POST['message'];
-        $task->isdone = $_POST['isdone'];
+        if($_POST['isdone'] == true){
+            $task->isdone =1;
+        }
+        else
+            $task->isdone = 0;
+//        $task->isdone = $_POST['isdone'];
         $task->save();
 
         header("Location: index.php?page=tasks&action=showTasks");
