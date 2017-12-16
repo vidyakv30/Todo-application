@@ -41,7 +41,11 @@ class routes
         $routes[] = $route;
         $route = self::create('POST','edit','tasks','tasksController','edit');
         $routes[] = $route;
-        $route = self::create('POST','save','tasks','tasksController','store');
+        $route = self::create('POST','save','tasks','tasksController','save');
+        $routes[] = $route;
+        $route = self::create('POST','create','tasks','tasksController','create');
+        $routes[] = $route;
+        $route = self::create('POST','store','tasks','tasksController','store');
         $routes[] = $route;
 
         return $routes;

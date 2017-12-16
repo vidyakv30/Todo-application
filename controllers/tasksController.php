@@ -32,7 +32,7 @@ class tasksController extends http\controller
            $tasks = todos::findTasksByID($userID);
            if ($tasks==FALSE){
                echo "You have not created any tasks";
-
+               self::getTemplate('new_task');
            }
            else
            {
@@ -53,9 +53,11 @@ class tasksController extends http\controller
 
     //you should check the notes on the project posted in moodle for how to use active record here
 
-    public static function create()
+   public static function create()
+//    public static function newTask()
     {
-        print_r($_POST);
+       // print_r($_POST);
+        self::getTemplate('new_task');
     }
 
     //this is the function to view edit record form
@@ -70,13 +72,34 @@ class tasksController extends http\controller
     //this would be for the post for sending the task edit form
     public static function store()
     {
-
+        //self::getTemplate('new_task');
         session_start();
-        $record = todos::findOne($_REQUEST['id']);
+        $task = new todo();
+
+        $task->owneremail = $_POST['owneremail'];
+        $task->ownerid = $_SESSION['userID'];
+        $task->createddate = $_POST['createddate'];
+        $task->duedate = $_POST['duedate'];
+        $task->message = $_POST['message'];
+        $task->isdone = $_POST['isdone'];
+        $task->save();
+
+        header("Location: index.php?page=tasks&action=showTasks");
+
+        //$record = todos::findOne($_REQUEST['id']);
 //        $record->body = $_REQUEST['body'];
 //        print_r($_SESSION['userID']);
 //        print_r($_REQUEST['id']);
-       print_r($record);
+
+
+
+    }
+
+    public static function save() {
+        session_start();
+        $record = todos::findOne($_REQUEST['id']);
+
+        print_r($record);
         $record->owneremail = $_POST['owneremail'];
         $record->ownerid = $_POST['ownerid'];
         $record->createddate = $_POST['createddate'];
@@ -89,16 +112,13 @@ class tasksController extends http\controller
         $record->save();
         //print_r($_POST);
        header("Location: index.php?page=tasks&action=all");
-    }
 
-    public static function save() {
- session_start();
-//       // $task = new todo();
 
-        $task = todos::findOne($_REQUEST['id']);
 
-        $task->body = $_POST['body'];
-        $task->ownerid = $_SESSION['userID'];
+
+
+
+
         $task->save();
 
 //        $user = todos::findOne($_REQUEST['id']);
