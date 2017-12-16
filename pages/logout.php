@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,19 +15,11 @@
 </head>
 
 <body>
-
 <?php
-//this is how you print something
-
-print utility\htmlTable::genarateTableFromMultiArray($data);
-
+//logout.php
+session_start();
+session_destroy();
+header("Location: index.php");
 ?>
-<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
-<button type="submit" id="AddTaskForm" value="add task" >Add Task</button>
-</form>
-
-<h2><a href="index.php?page=accounts&action=logout">Log Out</a></h2>
-
-<script src="js/scripts.js"></script>
 </body>
 </html>

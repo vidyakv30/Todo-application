@@ -150,4 +150,10 @@ class accountsController extends http\controller
 
     }
 
+
+    public static function logout()
+    {
+        self::getTemplate('logout');
+    }
+
 }

@@ -17,17 +17,16 @@
 
 <body>
 
-<?php
-//this is how you print something
 
-print utility\htmlTable::genarateTableFromMultiArray($data);
-
-?>
-<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
-<button type="submit" id="AddTaskForm" value="add task" >Add Task</button>
+<form action="index.php?page=tasks&action=store" method="post">
+    Owner Email:<input type="text" name="owneremail"><br>
+    Created Date:<input type="datetime-local"name="createddate"><br>
+    Due date:<input type="datetime-local" name="duedate"><br>
+    Message:<input type="text" name="message"><br>
+    Is done:<input id="checkBox" type="checkbox" name="isdone"><br>
+    <input type="submit" value="Create Task">
 </form>
 
-<h2><a href="index.php?page=accounts&action=logout">Log Out</a></h2>
 
 <script src="js/scripts.js"></script>
 </body>
