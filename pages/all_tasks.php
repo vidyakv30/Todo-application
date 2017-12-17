@@ -16,24 +16,18 @@
 </head>
 
 <body>
+<div class="page-header container">
+    <h1>Tasks <small>All tasks with current status<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
+                <button class="btn btn-sm btn-primary pull-right" type="submit" id="AddTaskForm" value="add task" title="Add Task" >Add Task</button>
+            </form></small> </h1>
 
+</div>
 <?php
 //this is how you print something
 
 print utility\htmlTable::genarateTableFromMultiArray($data);
 
 ?>
-<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
-<button type="submit" id="AddTaskForm" value="add task" >Add Task</button>
-</form>
-
-
-<h3><a href="index.php?page=accounts&action=edit"> Edit Profile </a></h3>
-<!--<form action="index.php?page=accounts&action=profile" method="POST" id="EditProfile">-->
-<!--<button type="submit" id="EditProfile" value="add task" >Edit Profile</button>-->
-<!--</form>-->
-
-
 
 
 

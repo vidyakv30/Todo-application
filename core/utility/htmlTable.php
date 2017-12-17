@@ -33,7 +33,9 @@ class htmlTable
 //                }
                 $tableGen .= '<td>' . $value . '</td>';
             }
-            $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $id_new . '">View</a></td>';
+            $tableGen .= '<td><button type="button" onclick="location.href=\'index.php?page=' . $referingPage . '&action=show&id=' . $id_new . '\';"'.
+                          'class="btn btn-default" aria-label="Left Align" title="View Details"><span class="glyphicon glyphicon-chevron-right"'.
+                          'aria-hidden="true"></span></button></td>';
             $tableGen .= '</tr>';
         }
 

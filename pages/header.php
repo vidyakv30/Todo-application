@@ -22,8 +22,8 @@
     <div>
 
        <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">View Profile
-</a></li>
+        <li><a href="index.php?page=accounts&action=edit"> Edit Profile </a>
+        </li>
            <li><button type="button" onclick="location.href='index.php?page=accounts&action=logout';" class="btn btn-default" aria-label="Right Align" title="Logout">
   <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                </button></li>
