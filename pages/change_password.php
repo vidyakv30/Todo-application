@@ -36,7 +36,7 @@
                     <label>Confirm Password :</label>
                     <input type="password" class="form-control" name="confirmpassword"/>
                 </div>
-                <button class="btn btn-primary btn-sm center-block">
+                <button class="btn btn-primary btn-sm center-block" type="submit">
                     Submit
                 </button>
             </form>

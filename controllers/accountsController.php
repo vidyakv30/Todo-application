@@ -124,17 +124,22 @@ class accountsController extends http\controller
 
         $user = accounts::findUserbyEmail($_REQUEST['email']);
 
+        session_start();
 
         if ($user == FALSE) {
-            echo 'user not found';
+            $_SESSION["errorMessage"] = "User Not found!";
+            header("Location: index.php");
+//            echo 'user not found';
         } else {
 
             if($user->checkPassword($_POST['password']) == TRUE) {
 
-                echo 'login';
+//                echo 'login';
 
                 session_start();
+
                 $_SESSION["userID"] = $user->id;
+                unset($_SESSION['errorMessage']);
                 //echo $user->id;
 
 
@@ -144,7 +149,9 @@ class accountsController extends http\controller
 
                 //print_r($_SESSION);
             } else {
-                echo 'password does not match';
+                $_SESSION["errorMessage"] = "Invalid Password!";
+                header("Location: index.php");
+//                echo 'password does not match';
             }
 
         }
