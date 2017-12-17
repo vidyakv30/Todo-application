@@ -49,6 +49,10 @@ class routes
         $routes[] = $route;
         $route = self::create('GET','logout','accounts','accountsController','logout');
         $routes[] = $route;
+        $route = self::create('GET','changePassword','accounts','accountsController','changePassword');
+        $routes[] = $route;
+        $route = self::create('POST','changePassword','accounts','accountsController','savePassword');
+        $routes[] = $route;
 
 
 

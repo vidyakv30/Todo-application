@@ -160,4 +160,33 @@ class accountsController extends http\controller
         self::getTemplate('logout');
     }
 
+    public static function changePassword()
+    {
+        self::getTemplate('change_password');
+    }
+
+    public static function savePassword(){
+
+        session_start();
+        $user = accounts::findOne($_SESSION['userID']);
+
+            if($user->checkPassword($_POST['oldpassword']) == TRUE)
+            {
+               if ($_POST['newpassword']== $_POST['confirmpassword']){
+                   $user->password = $user->setPassword($_POST['newpassword']);
+                   $user->save();
+                   session_destroy();
+                   die ("Your password has been changed.<a href='index.php'>Return </a>to the main page");
+               }
+               else{
+                   echo "New Password do not match";
+               }
+            }else
+            {
+                echo " Old password does not match";
+            }
+
+
+    }
+
 }
