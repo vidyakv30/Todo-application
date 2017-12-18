@@ -1,26 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kwilliams
- * Date: 11/27/17
- * Time: 5:32 PM
- */
 
-
-//each page extends controller and the index.php?page=tasks causes the controller to be called
+//Each page extends controller and the index.php?page=tasks causes the controller to be called
 class accountsController extends http\controller
 {
 
-    //each method in the controller is named an action.
-    //to call the show function the url is index.php?page=task&action=show
-    public static function show()
-    {
-        $record = accounts::findOne($_REQUEST['id']);
-        self::getTemplate('show_account', $record);
-    }
-
-    //to call the show function the url is index.php?page=accounts&action=all
-
+    //This method is to find all accounts
     public static function all()
     {
 
@@ -28,26 +12,20 @@ class accountsController extends http\controller
         self::getTemplate('all_accounts', $records);
 
     }
-    //to call the show function the url is called with a post to: index.php?page=task&action=create
-    //this is a function to create new tasks
-
-    //you should check the notes on the project posted in moodle for how to use active record here
-
-    //this is to register an account i.e. insert a new account
+    //This is the method to create a new account
     public static function register()
     {
-        //https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/
-        //USE THE ABOVE TO SEE HOW TO USE Bcrypt
-        self::getTemplate('register');
+              self::getTemplate('register');
     }
 
-    //this is the function to save the user the new user for registration
+    /** This is the method  is  to save  new user for registration.
+     **/
     public static function store()
 
-    {
+    { //Find if the user already exists in the database
         $user = accounts::findUserbyEmail($_REQUEST['email']);
 
-
+      //Create a new account for the user and save the user details, if the user does not exist already.
         if ($user == FALSE) {
             $user = new account();
             $user->email = $_POST['email'];
@@ -56,25 +34,13 @@ class accountsController extends http\controller
             $user->phone = $_POST['phone'];
             $user->birthday = $_POST['birthday'];
             $user->gender = $_POST['gender'];
-           //$user->password = $_POST['password'];
-            //this creates the password
-            //this is a mistake you can fix...
-            //Turn the set password function into a static method on a utility class.
             $user->password = $user->setPassword($_POST['password']);
             $user->save();
 
-            //you may want to send the person to a
-            // login page or create a session and log them in
-            // and then send them to the task list page and a link to create tasks
-
+            //The new user is redirected to the home page to login
             header("Location: index.php?");
 
-
-
         } else {
-            //You can make a template for errors called error.php
-            // and load the template here with the error you want to show.
-           // echo 'already registered';
             $error = 'already registered';
             self::getTemplate('error', $error);
 
@@ -82,14 +48,19 @@ class accountsController extends http\controller
 
     }
 
+    /** This method allows the user to edit his account details
+     **/
     public static function edit()
     {   session_start();
         $record = accounts::findOne($_SESSION['userID']);
-
         self::getTemplate('edit_account', $record);
 
     }
-//this is used to save the update form data
+
+    /**
+     * This method saves the account details updated by the logged in user
+     **/
+
     public static function save() {
         session_start();
         $user = accounts::findOne($_SESSION['userID']);
@@ -101,11 +72,14 @@ class accountsController extends http\controller
         $user->birthday = $_POST['birthday'];
         $user->gender = $_POST['gender'];
         $user->save();
+
         $_SESSION['successMessage']="Account details successfully updated!";
         header("Location: index.php?page=accounts&action=edit");
 
     }
-
+   /**
+    * This method deletes a user by id
+    **/
     public static function delete() {
 
         $record = accounts::findOne($_REQUEST['id']);
@@ -113,47 +87,33 @@ class accountsController extends http\controller
         header("Location: index.php?page=accounts&action=all");
     }
 
-    //this is to login, here is where you find the account and allow login or deny.
+     /**
+     *This method is to allow or deny the user to login to the application
+     **/
+
     public static function login()
     {
-        //you will need to fix this so we can find users username.  YOu should add this method findUser to the accounts collection
-        //when you add the method you need to look at my find one, you need to return the user object.
-        //then you need to check the password and create the session if the password matches.
-        //you might want to add something that handles if the password is invalid, you could add a page template and direct to that
-        //after you login you can use the header function to forward the user to a page that displays their tasks.
-        //        $record = accounts::findUser($_POST['email']);
+          $user = accounts::findUserbyEmail($_REQUEST['email']);
 
-        $user = accounts::findUserbyEmail($_REQUEST['email']);
-
-        session_start();
+        //Alert the user with error message and stay on the login page if the user is not found
 
         if ($user == FALSE) {
             $_SESSION["errorMessage"] = "User Not found!";
             header("Location: index.php");
-//            echo 'user not found';
-        } else {
+        }
+        else {
+        //Start the session if the password matches
 
             if($user->checkPassword($_POST['password']) == TRUE) {
 
-//                echo 'login';
+               self::startSession($user);
 
-                session_start();
-
-                $_SESSION["userID"] = $user->id;
-                $_SESSION["userName"] = $user->email;
-                unset($_SESSION['errorMessage']);
-                //echo $user->id;
-
-
-                //forward the user to the show all todos page
-                header("Location: index.php?page=tasks&action=showTasks");
-
-
-                //print_r($_SESSION);
-            } else {
+               }
+               //Alert the user with error message if password doe not match
+               else
+                   {
                 $_SESSION["errorMessage"] = "Invalid Password!";
                 header("Location: index.php");
-//                echo 'password does not match';
             }
 
         }
@@ -163,38 +123,46 @@ class accountsController extends http\controller
 
     }
 
-
+/**
+ *This method allows the user to logout from the application
+ **/
     public static function logout()
     {
-        self::getTemplate('logout');
+        //self::getTemplate('logout');
+        session_start();
+        session_destroy();
+        header("Location: index.php");
     }
-
+    /**
+     *This method allows the user to change password of the application
+     **/
     public static function changePassword()
     {
         self::getTemplate('change_password');
     }
-
+  /** This method saves the new password  if the passwords match   */
     public static function savePassword(){
 
-        session_start();
+        //session_start();
         $user = accounts::findOne($_SESSION['userID']);
 
             if($user->checkPassword($_POST['oldpassword']) == TRUE)
             {
+                //Save the new password if the new password and confirm password match
+
                if ($_POST['newpassword']== $_POST['confirmpassword']){
                    $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
                    $user->password = $user->setPassword($_POST['newpassword']);
                    $user->save();
                    header("Location:index.php?page=accounts&action=changePassword");
-//                   session_destroy();
 
-                   //die ("Your password has been changed.<a href='index.php'>Return </a>to the main page");
                }
                else{
+                   //Alert the user with error message if the new password and confirm password do not match
                    $_SESSION['errorMessage'] = "New Passwords do not match";
                }
             }else
-            {
+            {    //Alert the user with error message if the apssword entered is not valid
                 $_SESSION['errorMessage'] = "Invalid password Entered";
 
             }
@@ -203,4 +171,20 @@ class accountsController extends http\controller
 
     }
 
+    /**
+     * This method creates a new session when the user logs with valid userID and password. Save the userID and username in the session
+     **/
+    public static function startSession($user){
+
+        session_start();
+        $_SESSION["userID"] = $user->id;
+        $_SESSION["userName"] = $user->email;
+        unset($_SESSION['errorMessage']);
+
+        //forward the user to the task list page
+        header("Location: index.php?page=tasks&action=showTasks");
+
+    }
+
 }
+
