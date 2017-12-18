@@ -17,14 +17,6 @@
 
 <body>
 
-<?php
-////this is how you print something  $data contains the record that was selected on the table.
-//
-print_r($data);
-//print_r ($_REQUEST);
-print_r($data->message);
-?>
-<br>
 <div class="container">
     <div id="viewtaskbox" style="margin-top:50px"
          class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">

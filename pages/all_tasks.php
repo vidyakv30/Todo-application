@@ -17,13 +17,13 @@
 
 <body>
 <div class="page-header container">
-    <h1>Tasks <small>All tasks with current status<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
+    <h2><small>My Tasks List<form action="index.php?page=tasks&action=create" method="POST" id="AddTaskForm">
                 <button class="btn btn-sm btn-primary pull-right" type="submit" id="AddTaskForm" value="add task" title="Add Task" >Add Task</button>
-            </form></small> </h1>
+            </form></small> </h2>
 
 </div>
 <?php
-//this is how you print something
+//Print the task list in a table format
 
 print utility\htmlTable::genarateTableFromMultiArray($data);
 
