@@ -119,7 +119,7 @@ class tasksController extends http\controller
 
         $record->save();
         //print_r($_POST);
-       header("Location: index.php?page=tasks&action=all");
+       header("Location: index.php?page=tasks&action=showTasks");
 
 
 

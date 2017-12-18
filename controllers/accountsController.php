@@ -139,6 +139,7 @@ class accountsController extends http\controller
                 session_start();
 
                 $_SESSION["userID"] = $user->id;
+                $_SESSION["userName"] = $user->email;
                 unset($_SESSION['errorMessage']);
                 //echo $user->id;
 

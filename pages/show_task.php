@@ -38,7 +38,7 @@ print_r($data->message);
                       method="post" class="form-horizontal" role="form">
 
                     <div class="form-group">
-                        <label for="id" class="col-md-3 control-label">Id</label>
+                        <label for="id" class="col-md-3 control-label">Task #</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="id" value="<?php echo $data->id ?>"
                                    readonly><br>
