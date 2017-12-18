@@ -101,7 +101,10 @@ class accountsController extends http\controller
         $user->birthday = $_POST['birthday'];
         $user->gender = $_POST['gender'];
         $user->save();
-        header("Location: index.php?page=accounts&action=all");
+        $_SESSION['successMessage']="Account details successfully updated!";
+
+//        header("Location: index.php?page=accounts&action=all");
+        header("Location: index.php?page=accounts&action=edit");
 
     }
 
