@@ -32,7 +32,7 @@ class tasksController extends http\controller
            }
            $tasks = todos::findTasksByID($userID);
            if ($tasks==FALSE){
-               echo "You have not created any tasks";
+               echo "Your task list is empty. Please enter details to create one";
                self::getTemplate('new_task');
            }
            else
@@ -117,7 +117,7 @@ class tasksController extends http\controller
         $record = todos::findOne($_REQUEST['id']);
         $record->delete();
 
-        header("Location: index.php?page=tasks&action=all");
+        header("Location: index.php");
 
     }
 
