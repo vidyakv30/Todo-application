@@ -56,7 +56,7 @@ class accountsController extends http\controller
             $user->phone = $_POST['phone'];
             $user->birthday = $_POST['birthday'];
             $user->gender = $_POST['gender'];
-            //$user->password = $_POST['password'];
+           //$user->password = $_POST['password'];
             //this creates the password
             //this is a mistake you can fix...
             //Turn the set password function into a static method on a utility class.
@@ -102,8 +102,6 @@ class accountsController extends http\controller
         $user->gender = $_POST['gender'];
         $user->save();
         $_SESSION['successMessage']="Account details successfully updated!";
-
-//        header("Location: index.php?page=accounts&action=all");
         header("Location: index.php?page=accounts&action=edit");
 
     }
@@ -184,18 +182,23 @@ class accountsController extends http\controller
             if($user->checkPassword($_POST['oldpassword']) == TRUE)
             {
                if ($_POST['newpassword']== $_POST['confirmpassword']){
+                   $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
                    $user->password = $user->setPassword($_POST['newpassword']);
                    $user->save();
-                   session_destroy();
-                   die ("Your password has been changed.<a href='index.php'>Return </a>to the main page");
+                   header("Location:index.php?page=accounts&action=changePassword");
+//                   session_destroy();
+
+                   //die ("Your password has been changed.<a href='index.php'>Return </a>to the main page");
                }
                else{
-                   echo "New Password do not match";
+                   $_SESSION['errorMessage'] = "New Passwords do not match";
                }
             }else
             {
-                echo " Old password does not match";
+                $_SESSION['errorMessage'] = "Invalid password Entered";
+
             }
+            header("Location:index.php?page=accounts&action=changePassword");
 
 
     }

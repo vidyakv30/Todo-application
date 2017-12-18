@@ -16,6 +16,7 @@ class tasksController extends http\controller
     {
         $record = array();
         $record = todos::findOne($_REQUEST['id']);
+
         self::getTemplate('show_task', $record);
     }
 
@@ -80,6 +81,7 @@ class tasksController extends http\controller
         $task->createddate = $_POST['createddate'];
         $task->duedate = $_POST['duedate'];
         $task->message = $_POST['message'];
+
         if($_POST['isdone'] == true){
             $task->isdone =1;
         }
