@@ -31,7 +31,7 @@ class routes
         $routes[] = self::create('POST','create','tasks','tasksController','create');
         //To store the new- created task
         $routes[] = self::create('POST','store','tasks','tasksController','store');
-        //To show a task (by task id)
+        //To show a task (by task id)s
         $routes[] = self::create('GET','show','tasks','tasksController','show');
         //To edit a task
         $routes[] = self::create('POST','edit','tasks','tasksController','edit');

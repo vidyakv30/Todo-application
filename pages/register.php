@@ -1,3 +1,4 @@
+<!--Form to register a new user account-->
 
 <div class="container">
     <div id="signupbox" style="margin-top:50px"

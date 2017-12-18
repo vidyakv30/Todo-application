@@ -68,6 +68,5 @@
         </div>
     </div>
 </div>
-<!--    <button type="submit" form="form1" value="delete" >Delete</button>-->
 
 

@@ -51,8 +51,7 @@ class accountsController extends http\controller
     /** This method allows the user to edit his account details
      **/
     public static function edit()
-    {   //session_start();
-        $record = accounts::findOne($_SESSION['userID']);
+    {    $record = accounts::findOne($_SESSION['userID']);
         self::getTemplate('edit_account', $record);
 
     }
@@ -62,7 +61,7 @@ class accountsController extends http\controller
      **/
 
     public static function save() {
-        session_start();
+
         $user = accounts::findOne($_SESSION['userID']);
 
         $user->email = $_POST['email'];
@@ -128,7 +127,7 @@ class accountsController extends http\controller
  **/
     public static function logout()
     {
-        session_start();
+
         session_destroy();
         header("Location: index.php");
     }
@@ -142,8 +141,7 @@ class accountsController extends http\controller
   /** This method saves the new password  if the passwords match   */
     public static function savePassword(){
 
-        //session_start();
-        $user = accounts::findOne($_SESSION['userID']);
+           $user = accounts::findOne($_SESSION['userID']);
 
             if($user->checkPassword($_POST['oldpassword']) == TRUE)
             {

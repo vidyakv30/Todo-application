@@ -1,6 +1,4 @@
-
-
-
+<!--Form to Edit a task-->
 
 <div class="container">
     <div id="edittaskbox" style="margin-top:50px"

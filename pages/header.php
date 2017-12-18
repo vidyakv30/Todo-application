@@ -1,14 +1,8 @@
+<!--Page to define the navigation bar-->
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-<!--            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
-<!--                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-<!--                <span class="sr-only">Toggle navigation</span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--            </button>-->
             <img class="navbar-brand" style="padding:5px!important" src="resources/Todo.png" alt="To Do application">
             <p class="navbar-brand" >To-Do Application</p>
         </div>
@@ -41,5 +35,5 @@
         ?>
     </div>
 </nav>
-<!---------------------------Nav bar end----------------------->
+
 
