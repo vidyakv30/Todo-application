@@ -1,7 +1,6 @@
 <?php
 
 namespace utility;
-//namespace MyProject\mvcName;
 
 class htmlTable
 {
@@ -10,7 +9,7 @@ class htmlTable
 
         $tableGen = '<div class="container"><table border="1" class="table table-striped">';
         $tableGen .= '<tr >';
-        //this grabs the first element of the array so we can extract the field headings for the table
+        //this grabs the first element of the array to  extract the field headings for the table
         $fieldHeadings = $array[0];
         $fieldHeadings = get_object_vars($fieldHeadings);
         $fieldHeadings = array_keys($fieldHeadings);
@@ -25,12 +24,9 @@ class htmlTable
             $tableGen .= '<tr>';
             foreach ($record as $key => $value) {
                 if ($key == 'id') {
-//                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $value . '">View</a></td>';
                     $id_new = $value;
                 }
-// else {
-//                    $tableGen .= '<td>' . $value . '</td>';
-//                }
+
                 $tableGen .= '<td>' . $value . '</td>';
             }
             $tableGen .= '<td><button type="button" onclick="location.href=\'index.php?page=' . $referingPage . '&action=show&id=' . $id_new . '\';"'.

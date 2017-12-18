@@ -51,7 +51,7 @@ class accountsController extends http\controller
     /** This method allows the user to edit his account details
      **/
     public static function edit()
-    {   session_start();
+    {   //session_start();
         $record = accounts::findOne($_SESSION['userID']);
         self::getTemplate('edit_account', $record);
 
@@ -128,7 +128,6 @@ class accountsController extends http\controller
  **/
     public static function logout()
     {
-        //self::getTemplate('logout');
         session_start();
         session_destroy();
         header("Location: index.php");

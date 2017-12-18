@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kwilliams
- * Date: 11/27/17
- * Time: 5:32 PM
- */
-
 
 //each page extends controller and the index.php?page=tasks causes the controller to be called
 class tasksController extends http\controller
 {
-    //each method in the controller is named an action.
-    //to call the show function the url is index.php?page=task&action=show
+    /**
+     * This method is to  show the details of the task requested( one task).URL ->index.php?page=tasks&action=show&id=?
+     **/
     public static function show()
     {
         $record = array();
@@ -20,10 +14,11 @@ class tasksController extends http\controller
         self::getTemplate('show_task', $record);
     }
 
-    //to call the show function the url is index.php?page=task&action=list_task
-
+    /**
+     * This method is show the tasks list of the logged in user.URL is index.php?page=task&action=showTasks
+     */
     public static function showTasks()
-    {      session_start();
+    {      //session_start();
 
            if(key_exists('userID',$_SESSION)) {
                $userID = $_SESSION['userID'];
@@ -31,7 +26,9 @@ class tasksController extends http\controller
 
                echo 'you must be logged in to view tasks';
            }
+
            $tasks = todos::findTasksByID($userID);
+
            if ($tasks==FALSE){
                echo "Your task list is empty. Please enter details to create one";
                self::getTemplate('new_task');
@@ -44,36 +41,41 @@ class tasksController extends http\controller
 
     }
 
+    /**
+     * This method is lists all tasks.URL is index.php?page=task&action=all
+     */
     public static function all()
     {
         $records = todos::findAll();
         self::getTemplate('all_tasks', $records);
 
     }
-    //to call the show function the url is called with a post to: index.php?page=task&action=create
-    //this is a function to create new tasks
 
-    //you should check the notes on the project posted in moodle for how to use active record here
-
+    /**
+     * This method is allows to add or create a new task .URL is index.php?page=tasks&action=create
+     **/
    public static function create()
-//    public static function newTask()
+
     {
         self::getTemplate('new_task');
     }
 
-    //this is the function to view edit record form
+    /**
+     * This method is allows the user to edit the details of a task using a form.URL is index.php?page=tasks&action=edit&id=?
+     **/
     public static function edit()
     {
         $record = todos::findOne($_REQUEST['id']);
-
         self::getTemplate('edit_task', $record);
 
     }
 
-    //this would be for the post for sending the task edit form
+    /**
+     * This method is to store the details of the new task created by the user
+     **/
     public static function store()
     {
-        session_start();
+      //  session_start();
         $task = new todo();
 
         $task->owneremail = $_POST['owneremail'];
@@ -93,8 +95,11 @@ class tasksController extends http\controller
 
     }
 
+    /**
+     * This method is to save the details updated by the userin the edit task form.
+     **/
     public static function save() {
-        session_start();
+       // session_start();
         $record = todos::findOne($_REQUEST['id']);
         $record->owneremail = $_POST['owneremail'];
         $record->ownerid = $_POST['ownerid'];
@@ -103,23 +108,21 @@ class tasksController extends http\controller
         $record->message = $_POST['message'];
         $record->isdone = $_POST['isdone'];
         $record->save();
+
+        //Redirects the user to the task list page.
         header("Location: index.php?page=tasks&action=showTasks");
         $task->save();
 
-      //  header("Location: index.php?page=tasks&action=all");
-
     }
 
-
-
-    //this is the delete function.  You actually return the edit form and then there should be 2 forms on that.
-    //One form is the todo and the other is just for the delete button
+    /**
+     * This method allows to delete a task created by the user.
+     **/
     public static function delete()
-    {   session_start();
+    {   //session_start();
         $record = todos::findOne($_REQUEST['id']);
         $record->delete();
-
-        header("Location: index.php");
+        header("Location: index.php?page=tasks&action=showTasks");
 
     }
 

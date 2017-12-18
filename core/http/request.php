@@ -6,7 +6,7 @@ class request
 {
 
 
-//this gets the request method to make it easier to use
+//this gets the request method
     static public function getRequestMethod()
     {
         $request_method = $_SERVER['REQUEST_METHOD'];
@@ -31,7 +31,7 @@ class request
     static public function getAction()
     {
 
-//this is a litte code to help the homepage handle post requests if needed
+//this helps the homepage handle post requests if needed
         if (self::getRequestMethod() == 'POST') {
             $action = 'create';
 
