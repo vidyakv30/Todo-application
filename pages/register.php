@@ -25,7 +25,7 @@
                 <div style="float:right; font-size: 85%; position: relative; top:-10px"></div>
             </div>
             <div class="panel-body">
-                <form id="signupform" class="form-horizontal" role="form">
+                <form id="signupform" action="index.php?page=accounts&action=register" method="post" class="form-horizontal" role="form">
 
                     <div id="signupalert" style="display:none" class="alert alert-danger">
                         <p>Error:</p>
@@ -43,21 +43,55 @@
                     <div class="form-group">
                         <label for="firstname" class="col-md-3 control-label">First Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="firstname" placeholder="First Name">
+                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="fname" placeholder="First Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="lastname" class="col-md-3 control-label">Last Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="lastname" placeholder="Last Name">
+                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="lname" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" onfocus="resetSignUpError();" name="passwd" placeholder="Password">
+                            <input type="password" class="form-control" onfocus="resetSignUpError();" name="password" placeholder="Password">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for= "birthday" class="col-md-3 control-label">Birthday</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="birthday" placeholder="YYYY-MM-DD"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for= "phone" class="col-md-3 control-label">Phone</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="phone" placeholder ="Phone Number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for ="gender" class="col-md-3 control-label">Gender</label>
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" value="male" /> Male
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" value="female" /> Female
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" value="other" /> Other
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
 
 
 

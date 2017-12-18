@@ -23,7 +23,7 @@
 
     //this how to print some data;
     // echo $data['site_name'];
-    echo 'Todo Application';
+//    echo 'Todo Application';
     if(isset($_SESSION["userID"])){
         header("Location: index.php?page=tasks&action=showTasks");
     }
