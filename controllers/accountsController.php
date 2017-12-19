@@ -150,10 +150,16 @@ class accountsController extends http\controller
                 //Save the new password if the new password and confirm password match
 
                if ($_POST['newpassword']== $_POST['confirmpassword']){
-                   $user->password = $user->setPassword($_POST['newpassword']);
-                   $user->save();
-                   $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
-                   header("Location:index.php?page=accounts&action=changePassword");
+                   if(strlen($_POST['newpassword']>=6))
+                   {
+                       $user->password = $user->setPassword($_POST['newpassword']);
+                       $user->save();
+                       $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
+                       header("Location:index.php?page=accounts&action=changePassword");
+                   }
+                   else{
+                       $_SESSION['errorMessage'] = "Password should be at least 6 character long";
+                   }
 
                }
                else{
