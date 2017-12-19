@@ -37,8 +37,7 @@
                     <div class="form-group">
                         <label for="owneremail" class="col-md-3 control-label">Due Date</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="duedate" value="<?php echo $data->duedate ?>"
-                                   readonly><br>
+                            <input type="text" class="form-control" name="duedate" value="<?php echo $data->duedate ?>"><br>
                         </div>
                     </div>
                     <div class="form-group">
