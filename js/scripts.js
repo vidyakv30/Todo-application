@@ -34,6 +34,8 @@ function resetSignUpError(){
 
     document.getElementById('signupalert').style.display="none";
     document.getElementById('message').innerHTML="";
+    document.getElementById('serverValidationRegisterErrors').style.display = "none";
+    document.getElementById('registerInvalidMessage').innerHTML='';
 }
 
 function validateBeforeSignin(){
@@ -69,4 +71,20 @@ function clearPwdErrorSuccessMessages(){
         document.getElementById('changePwdError').style.display = "none";
         document.getElementById('changePwdInvalidMessage').innerHTML = "";
     }
+}
+
+function validateTaskFields(){
+    if (document.getElementById('message').value==''||document.getElementById('message').value.length<2){
+        document.getElementById('newTaskAlert').style.display = "block";
+        document.getElementById('errorMessageInTask').innerHTML="Message should be more that 1 character";
+    }
+    else{
+        document.getElementById('createTaskForm').submit();
+    }
+
+}
+
+function hideErrorMessageInTask(){
+    document.getElementById('newTaskAlert').style.display = "none";
+    document.getElementById('errorMessageInTask').innerHTML="";
 }

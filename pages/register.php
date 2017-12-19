@@ -11,6 +11,21 @@
             <div class="panel-body">
                 <form id="signupform" action="index.php?page=accounts&action=register" method="post" class="form-horizontal" role="form">
 
+
+                    <?php  if (isset($_SESSION['errorMessage'])) { ?>
+                        <div id="serverValidationRegisterErrors" style="display:block" class="alert alert-danger">
+
+                            <p id="registerInvalidMessage"><?php print_r($_SESSION['errorMessage']);
+
+                                ?></p>
+
+
+                            <span></span>
+                        </div>
+                    <?php } unset($_SESSION['errorMessage']);?>
+
+
+
                     <div id="signupalert" style="display:none" class="alert alert-danger">
                         <p>Error:</p>
                         <span id="message"></span>

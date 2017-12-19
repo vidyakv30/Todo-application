@@ -43,9 +43,10 @@ class accountsController extends http\controller
             header("Location: index.php?");
 
         } else {
-            $error = 'already registered';
-            self::getTemplate('error', $error);
-
+            $_SESSION['errorMessage'] = "User already registered!";
+//            $error = 'already registered';
+//            self::getTemplate('error', $error);
+            header("Location: index.php?page=accounts&action=register");
         }
 
     }
@@ -77,15 +78,6 @@ class accountsController extends http\controller
         $_SESSION['successMessage']="Account details successfully updated!";
         header("Location: index.php?page=accounts&action=edit");
 
-    }
-   /**
-    * This method deletes a user by id
-    **/
-    public static function delete() {
-
-        $record = accounts::findOne($_REQUEST['id']);
-        $record->delete();
-        header("Location: index.php?page=accounts&action=all");
     }
 
      /**
@@ -158,7 +150,7 @@ class accountsController extends http\controller
                        header("Location:index.php?page=accounts&action=changePassword");
                    }
                    else{
-                       $_SESSION['errorMessage'] = "Password should be at least 6 character long";
+                       $_SESSION['errorMessage'] = "Password should be atleast 6 character long";
                    }
 
                }
