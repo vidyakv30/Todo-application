@@ -27,19 +27,19 @@
                     <div class="form-group">
                         <label for="firstname" class="col-md-3 control-label">First Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="fname" placeholder="First Name">
+                            <input type="text" id="fname" class="form-control" onfocus="resetSignUpError();" name="fname" placeholder="First Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="lastname" class="col-md-3 control-label">Last Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" onfocus="resetSignUpError();" name="lname" placeholder="Last Name">
+                            <input type="text" id="lname" class="form-control" onfocus="resetSignUpError();" name="lname" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" onfocus="resetSignUpError();" name="password" placeholder="Password">
+                            <input type="password" id="registerPwd" class="form-control" onfocus="resetSignUpError();" name="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@
                         <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
                             <button id="btn-signup" type="button"
-                                    onclick="validateAndRegister();" class="btn btn-info"><i
+                                    onclick="validateToRegister();" class="btn btn-info"><i
                                         class="icon-hand-right"></i>
                                 &nbsp Sign Up
                             </button>

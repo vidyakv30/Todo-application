@@ -22,7 +22,8 @@ class accountsController extends http\controller
      **/
     public static function store()
 
-    { //Find if the user already exists in the database
+    {
+        //Find if the user already exists in the database
         $user = accounts::findUserbyEmail($_REQUEST['email']);
 
       //Create a new account for the user and save the user details, if the user does not exist already.
@@ -34,6 +35,7 @@ class accountsController extends http\controller
             $user->phone = $_POST['phone'];
             $user->birthday = $_POST['birthday'];
             $user->gender = $_POST['gender'];
+
             $user->password = $user->setPassword($_POST['password']);
             $user->save();
 
@@ -148,9 +150,9 @@ class accountsController extends http\controller
                 //Save the new password if the new password and confirm password match
 
                if ($_POST['newpassword']== $_POST['confirmpassword']){
-                   $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
                    $user->password = $user->setPassword($_POST['newpassword']);
                    $user->save();
+                   $_SESSION['successMessage'] = "Your Password has been changed. Please use your new password for the next login";
                    header("Location:index.php?page=accounts&action=changePassword");
 
                }

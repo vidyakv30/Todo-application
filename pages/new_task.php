@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="duedate" class="col-md-3 control-label">Due Date</label>
                         <div class="col-md-9">
-                            <input type="datetime" class="form-control" name="duedate"><br>
+                            <input type="datetime" class="form-control" name="duedate" placeholder="YYYY-MM-DD HH:MM:SS"><br>
                         </div>
                     </div>
                     <div class="form-group">

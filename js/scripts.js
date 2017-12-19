@@ -1,12 +1,25 @@
 
-function validateAndRegister(){
+function validateToRegister(){
     emailFlag = isValidEmail(signupform.email.value);
-    if(emailFlag) {
-        document.getElementById('signupform').submit();
-    }
-    else{
+    if(!emailFlag) {
         document.getElementById('message').innerHTML="Invalid Email";
         document.getElementById('signupalert').style.display="block";
+
+    }
+    else if(document.getElementById('fname').value=='' || document.getElementById('fname').value.length<1){
+        document.getElementById('message').innerHTML="Invalid First Name. First Name should be atleast 1 character.";
+        document.getElementById('signupalert').style.display="block";
+    }
+    else if(document.getElementById('lname').value=='' || document.getElementById('lname').value.length<1){
+        document.getElementById('message').innerHTML="Invalid Last Name. Last Name should be atleast 1 character.";
+        document.getElementById('signupalert').style.display="block";
+    }
+    else if(document.getElementById('registerPwd').value=='' || document.getElementById('registerPwd').value.length<6){
+        document.getElementById('message').innerHTML="Invalid Password. Password should be atleast 6 characters.";
+        document.getElementById('signupalert').style.display="block";
+    }
+    else{
+        document.getElementById('signupform').submit();
     }
 }
 
